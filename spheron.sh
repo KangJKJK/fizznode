@@ -31,6 +31,7 @@ echo -e "   - Arbitrum-Spheron 브릿지: https://spheron-devnet-eth.bridge.cald
 echo -e "3. 노드 등록 과정:"
 echo -e "   - https://fizz.spheron.network/ 방문"
 echo -e "   - Register Fizz Node버튼을 클릭"
+echo -e "   - WETH로 결제(테스트넷토큰) 선택 후 다운로드버튼 클릭"
 
 
 echo -e "4. GitHub 설정:"
