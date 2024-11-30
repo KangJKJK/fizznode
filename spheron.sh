@@ -11,6 +11,12 @@ echo -e "${GREEN}Spheron Fizz 노드 설치 스크립트를 시작합니다...${
 # 중요 안내사항 먼저 표시
 echo -e "${RED}중요 안내사항: 설치 전 필수 준비사항${NC}"
 
+lscpu | grep "CPU(s):"
+free -h 
+df -h 
+echo -e "노드등록시 VPS의 CPU, RAM, 스토리지공간의 작성이 필요합니다. 미리 기억해두세요."
+read -p "계속 진행하려면 엔터를 누르세요"
+
 echo -e "1. 테스트넷 ETH 받기 (아래 사이트들 중 선택):"
 echo -e "   - https://faucet.quicknode.com/arbitrum/sepolia"
 echo -e "   - https://www.alchemy.com/faucets/arbitrum-sepolia"
@@ -24,7 +30,8 @@ echo -e "   - Arbitrum-Spheron 브릿지: https://spheron-devnet-eth.bridge.cald
 
 echo -e "3. 노드 등록 과정:"
 echo -e "   - https://fizz.spheron.network/ 방문"
-echo -e "   - Download Now 버튼을 눌러 파일 다운로드"
+echo -e "   - Register Fizz Node버튼을 클릭"
+
 
 echo -e "4. GitHub 설정:"
 echo -e "   - https://github.com/ 접속"
@@ -32,14 +39,6 @@ echo -e "   - New repository 생성 (이름: Fizz)"
 echo -e "   - Public 설정 및 Add a README file 선택"
 echo -e "   - README 내용을 'Fizz'로 설정"
 echo -e "   - 다운로드 받은 파일 업로드"
-
-echo -e "5. Termius 설정:"
-echo -e "   - PC 또는 모바일에 Termius 어플리케이션 설치"
-echo -e "   - 접속 정보 입력:"
-echo -e "      Host: VPS 아이피"
-echo -e "      Label: Fizz"
-echo -e "      Username: root"
-echo -e "      Password: VPS 비밀번호"
 
 echo -e "모든 준비가 완료되었다면 계속 진행하려면 아무 키나 누르세요..."
 read -n 1 -s
