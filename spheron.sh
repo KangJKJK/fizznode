@@ -47,11 +47,6 @@ echo -e "   - Add File 선택 후 다운로드 받은 파일 업로드"
 echo -e "모든 준비가 완료되었다면 계속 진행하려면 아무 키나 누르세요..."
 read -n 1 -s
 
-# 작업 디렉토리 생성
-echo -e "${YELLOW}작업 디렉토리 생성중...${NC}"
-mkdir -p root/fizz
-cd root/fizz
-
 # 시스템 업데이트 및 기본 도구 설치
 echo -e "${YELLOW}시스템 업데이트 및 기본 도구 설치중...${NC}"
 sudo apt update && sudo apt upgrade -y
@@ -73,45 +68,26 @@ echo -e "${YELLOW}Docker Compose 설치중...${NC}"
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# 사용 가능한 포트 찾기 함수
-find_available_port() {
-    local port=$1
-    while nc -z localhost $port 2>/dev/null; do
-        port=$((port + 1))
-    done
-    echo $port
-}
+# Docker 컨테이너 실행 (같은 디렉토리에서 실행)
+echo -e "${YELLOW}Docker 컨테이너를 시작합니다...${NC}"
+docker-compose up -d
 
-# 사용 가능한 포트 찾기
-P2P_PORT=$(find_available_port 4001)
-API_PORT=$(find_available_port 8080)
+# GitHub ID와 Fizz 버전 입력 받기
+echo -e "${YELLOW}GitHub ID를 입력해주세요 (GitHub 프로필의 좌측 상단에 표시되는 사용자 아이디):${NC}"
+read GITHUB_ID
+echo -e "${GREEN}입력하신 GitHub ID: ${GITHUB_ID}${NC}"
 
-# docker-compose.yml 파일 생성
-echo -e "${YELLOW}5. Docker Compose 설정 파일 생성중...${NC}"
-cat > /root/.spheron/fizz/docker-compose.yml << EOL
-version: "3.9"
-services:
-  fizz:
-    image: spheron/fizz:latest
-    container_name: fizz
-    restart: always
-    ports:
-      - "${P2P_PORT}:4001"
-      - "${API_PORT}:8080"
-EOL
+echo -e "${YELLOW}다운로드 받으신 Fizz 버전을 입력해주세요 (예: 1.1.1):${NC}"
+read FIZZ_VERSION
+echo -e "${GREEN}입력하신 Fizz 버전: ${FIZZ_VERSION}${NC}"
 
-echo -e "${GREEN}설정된 포트 정보:${NC}"
-echo -e "P2P 포트: ${P2P_PORT}"
-echo -e "API 포트: ${API_PORT}"
+# Fizz 설치 및 실행
+echo -e "${YELLOW}Fizz 노드 설치를 시작합니다...${NC}"
+cd /root/fizz
+wget "https://raw.githubusercontent.com/${GITHUB_ID}/Fizz/main/fizzup-v${FIZZ_VERSION}"
+chmod +x fizzup-v${FIZZ_VERSION}
+./fizzup-v${FIZZ_VERSION}
 
-echo -e "${GREEN}설치 완료. 다음 단계:${NC}"
-echo -e "1. GitHub 사용자 이름으로 다음 명령어 실행:"
-echo -e "   cd /root/fizz"
-echo -e "   wget https://raw.githubusercontent.com/[your github username]/Fizz/main/fizzup-v1.0.1"
-echo -e "   chmod +x fizzup.sh"
-echo -e "   ./fizzup.sh"
-echo -e "2. 노드 실행:"
-echo -e "   cd root/fizz && docker-compose up -d"
-echo -e "3. 로그 확인:"
-echo -e "   docker-compose logs -f"
-echo -e "참고 문서: https://docs.spheron.network/fizz/setup-fizz"
+echo -e "${GREEN}Fizz 노드설치가 완료되었습니다.${NC}"
+echo -e "${GREEN}해당 명령어로 로그를 확인하세요: docker-compose -f ~/.spheron/fizz/docker-compose.yml logs -f${NC}"
+echo -e "${GREEN}스크립트작성자: https://t.me/kjkresearch${NC}"
