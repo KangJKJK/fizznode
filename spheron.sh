@@ -83,7 +83,6 @@ echo -e "${GREEN}입력하신 Fizz 버전: ${FIZZ_VERSION}${NC}"
 
 # Fizz 설치 및 실행
 echo -e "${YELLOW}Fizz 노드 설치를 시작합니다...${NC}"
-cd /root/fizz
 wget "https://raw.githubusercontent.com/${GITHUB_ID}/Fizz/main/fizzup-v${FIZZ_VERSION}"
 chmod +x fizzup-v${FIZZ_VERSION}
 ./fizzup-v${FIZZ_VERSION}
