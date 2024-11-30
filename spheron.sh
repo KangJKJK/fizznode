@@ -117,9 +117,10 @@ case $choice in
         API_PORT=$(find_available_port 8080)
 
         echo -e "${YELLOW}포트를 개방합니다...${NC}"
+        sudo ufw enable
         sudo ufw allow ${P2P_PORT}/tcp comment 'Spheron Fizz P2P port'
         sudo ufw allow ${API_PORT}/tcp comment 'Spheron Fizz API port'
-        sudo ufw enable
+        sudo ufw allow 22/tcp
 
         echo -e "${GREEN}포트 개방이 완료되었습니다.${NC}"
         echo -e "개방된 포트 목록:"
