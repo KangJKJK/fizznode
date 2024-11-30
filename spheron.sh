@@ -27,27 +27,26 @@ case $choice in
         echo -e "노드등록시 VPS의 CPU, RAM, 스토리지공간의 작성이 필요합니다. 미리 기억해두세요."
         read -p "계속 진행하려면 엔터를 누르세요"
 
-        echo -e "1. 테스트넷 ETH 받기 (아래 사이트들 중 선택):"
+        echo -e "${YELLOW}1. 테스트넷 ETH 받기 (아래 사이트들 중 선택):${NC}"
         echo -e "   - https://faucet.quicknode.com/arbitrum/sepolia"
         echo -e "   - https://www.alchemy.com/faucets/arbitrum-sepolia"
         echo -e "   - https://faucets.chain.link/arbitrum-sepolia"
         echo -e "   - https://learnweb3.io/faucets/arbitrum_sepolia/"
         read -p "계속 진행하려면 엔터를 누르세요"
 
-        echo -e "2. 토큰 및 브릿지:"
+        echo -e "${YELLOW}2. 토큰 및 브릿지:${NC}"
         echo -e "   - Spheron 토큰 획득: https://faucet.spheron.network/"
         echo -e "   - Sepolia-Arbitrum 브릿지: https://bridge.arbitrum.io/"
         echo -e "   - Arbitrum-Spheron 브릿지: https://spheron-devnet-eth.bridge.caldera.xyz/"
         read -p "계속 진행하려면 엔터를 누르세요"
 
-        echo -e "3. 노드 등록 과정:"
+        echo -e "${YELLOW}3. 노드 등록 과정:${NC}"
         echo -e "   - https://fizz.spheron.network/ 방문"
         echo -e "   - Register Fizz Node버튼을 클릭"
         echo -e "   - WETH로 결제(테스트넷토큰) 선택 후 다운로드버튼 클릭"
         read -p "계속 진행하려면 엔터를 누르세요"
 
-
-        echo -e "4. GitHub 설정:"
+        echo -e "${YELLOW}4. GitHub 설정:${NC}"
         echo -e "   - https://github.com/ 접속"
         echo -e "   - New repository 생성 (이름: Fizz)"
         echo -e "   - Public 설정 및 Add a README file 선택"
