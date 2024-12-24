@@ -86,14 +86,10 @@ case $choice in
         read GITHUB_ID
         echo -e "${GREEN}입력하신 GitHub ID: ${GITHUB_ID}${NC}"
 
-        echo -e "${YELLOW}다운로드 받으신 Fizz 버전을 입력해주세요 (예: 1.1.1):${NC}"
-        read FIZZ_VERSION
-        echo -e "${GREEN}입력하신 Fizz 버전: ${FIZZ_VERSION}${NC}"
-
         # Fizz 설치 및 실행
         echo -e "${YELLOW}Fizz 노드 설치를 시작합니다...${NC}"
-        wget "https://raw.githubusercontent.com/${GITHUB_ID}/Fizz/main/fizzup-v${FIZZ_VERSION}.sh"
-        chmod +x fizzup-v${FIZZ_VERSION}.sh
+        wget "https://raw.githubusercontent.com/${GITHUB_ID}/Fizz/main/fizzup.sh"
+        chmod +x fizzup.sh
         ./fizzup-v${FIZZ_VERSION}.sh
 
         echo -e "${GREEN}Fizz 노드설치가 완료되었습니다.${NC}"
